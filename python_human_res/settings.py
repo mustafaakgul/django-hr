@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +42,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "accounts",
+    "core",
+    "job",
 ]
 
 MIDDLEWARE = [
@@ -75,9 +84,13 @@ WSGI_APPLICATION = "python_human_res.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME_DEV'),
+        'USER': os.getenv('DB_USER_DEV'),
+        'PASSWORD': os.getenv('DB_PASSWORD_DEV'),
+        'HOST': os.getenv('DB_HOST_DEV'),
+        "PORT": os.getenv('DB_PORT_DEV'),
     }
 }
 
@@ -98,9 +111,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "tr-tr"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'Europe/Istanbul'
 
 USE_I18N = True
 
@@ -112,7 +125,32 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+# STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+CKEDITOR_CONFIGS = {
+    "default": {
+        "removePlugins": "stylesheetparser",
+        "allowedContent" : True,
+        "width" : "100%"
+    }
+}
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# EMAIL SETTINGS
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('MAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('MAIL_HOST_PASSWORD')
+EMAIL_USE_TLS = os.getenv('MAIL_USE_TLS')
+# EMAIL_USE_SSL = False
