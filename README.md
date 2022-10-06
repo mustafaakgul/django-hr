@@ -1,1 +1,2 @@
 - Seperate .env.development and .env.production
+- Template: https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/index.html
