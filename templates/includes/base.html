@@ -396,6 +396,22 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Authentication</span><i data-feather="more-horizontal"></i>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Authentication">Authentication</span></a>
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{% url 'accounts:login' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Login</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{% url 'accounts:register' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Register</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{% url 'accounts:forgot' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Edit">Forgot Password</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{% url 'accounts:reset' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Add">Reset Password</span></a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Email</span></a>

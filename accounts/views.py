@@ -22,7 +22,7 @@ def register(request):
     context = {
         "form": form
     }
-    return render(request, "register.html", context)
+    return render(request, "accounts/register.html", context)
 
 
 def loginUser(request):
@@ -40,15 +40,23 @@ def loginUser(request):
 
         if user is None:
             messages.info(request, "Kullanıcı Adı veya Parola Hatalı")
-            return render(request, "login.html", context)
+            return render(request, "accounts/login.html", context)
 
         messages.success(request, "Başarıyla Giriş Yaptınız")
         login(request, user)
         return redirect("dashboard")
-    return render(request, "login.html", context)
+    return render(request, "accounts/login.html", context)
 
 
 def logoutUser(request):
     logout(request)
     messages.success(request, "Başarıyla Çıkış Yaptınız")
     return redirect("index")
+
+
+def forgot(request):
+    return render(request, "accounts/forgot.html")
+
+
+def reset(request):
+    return render(request, "accounts/reset.html")
