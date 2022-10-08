@@ -401,6 +401,8 @@
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Authentication">Authentication</span></a>
                     <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{% url 'accounts:profile' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Account Settings</span></a>
+                        </li>
                         <li><a class="d-flex align-items-center" href="{% url 'accounts:login' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Login</span></a>
                         </li>
                         <li><a class="d-flex align-items-center" href="{% url 'accounts:register' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Register</span></a>
