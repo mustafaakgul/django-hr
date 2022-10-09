@@ -1,10 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-hey
-</body>
-</html>
+{% extends "includes/base.html" %}
+{% load static %}
+
+
+{% block title %}Main Page{% endblock %}
+
+
+{% block header %}
+
+    <!-- BEGIN: Vendor CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/vendors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css' %}">
+    <!-- END: Vendor CSS-->
+
+{% endblock %}
+
+
+{% block body_header %}
+
+{% endblock body_header %}
+
+
+{% block body %}
+
+    <div class ="row">
+        <div class="col-md-10 offset-md-3">
+            <div class="col-lg-8">
+                <form>
+                     {% csrf_token %}
+                    <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Ara..." value="{{ request.GET.keyword }}">
+                  <button type="submit" class="btn btn-danger">Ara</button>
+                </form>
+          </div>
+        </div>
+    </div>
+
+    <!-- Basic Tables start -->
+    <div class="row" id="basic-table">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Table Basic</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        Using the most basic table Leanne Grahamup, here’s how <code>.table</code>-based tables look in Bootstrap. You
+                        can use any example of below table for your table and it can be use with any type of bootstrap tables.
+                    </p>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Position</th>
+                                <th>Tags</th>
+                                <th>Unit</th>
+                                <th>Process</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if jobs %}
+
+                            {% for job in jobs %}
+                            <tr>
+                                <td>
+                                    <span class="fw-bold">{{ job.job_title }}</span>
+                                </td>
+{#                                {% for tag in job.tags %}#}
+                                <td><span class="badge rounded-pill badge-light-info me-1">{{ job.tags }}</span></td>
+{#                                {% endfor %}#}
+                                <td>{{ job.job_department }}</td>
+                                <td>
+                                    <a class="dropdown-item" href="{% url 'job:apply_jobs' job.id %}">
+                                        <span>APPLY</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                              <div class ="row">
+                                    <div class="col-md-10 offset-md-3">
+                                        <div class="col-lg-8">
+                                            <div class="alert alert-danger">No any jobs</div>
+                                        </div>
+                                    </div>
+                              </div>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Basic Tables end -->
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/responsive.bootstrap5.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/datatables.buttons.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/jszip.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/pdfmake.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/vfs_fonts.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.html5.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/buttons.print.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js' %}></script>
+    <script src="{% static 'app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js' %}></script>
+    <!-- END: Page Vendor JS-->
+
+    <!-- BEGIN: Page JS-->
+    <script src="{% static 'app-assets/js/scripts/tables/table-datatables-basic.js' %}></script>
+    <!-- END: Page JS-->
+
+{% endblock %}
