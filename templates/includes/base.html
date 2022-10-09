@@ -414,6 +414,17 @@
                     </ul>
                 </li>
 
+                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Jobs</span><i data-feather="more-horizontal"></i>
+                </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user-check"></i><span class="menu-title text-truncate" data-i18n="Authentication">Jobs</span></a>
+                    <ul class="menu-content">
+                        <li><a class="d-flex align-items-center" href="{% url 'job:personalized_jobs' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Personalized Job Lists</span></a>
+                        </li>
+                        <li><a class="d-flex align-items-center" href="{% url 'job:list_jobs' %}"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Job Lists</span></a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span><i data-feather="more-horizontal"></i>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="app-email.html"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Email</span></a>

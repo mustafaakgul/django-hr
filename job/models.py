@@ -36,6 +36,7 @@ STATUS = [
 
 class Tag(models.Model):
     name = models.CharField(max_length=50)
+    tags_related = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="tags_related", related_name="tags", blank=True)
 
     status = models.CharField(max_length=50, choices=STATUS, default=STATUS[0][0])
     created_date = models.DateTimeField(auto_now_add=True)
@@ -53,8 +54,8 @@ class Job(models.Model):
     job_location = models.CharField(max_length=50, choices=LOCATIONS, default=LOCATIONS[0][0])
     job_department = models.CharField(max_length=50, choices=DEPARTMENTS)
     job_type = models.CharField(max_length=50, choices=JOB_TYPES, default=JOB_TYPES[0][0])
-    tags = models.ManyToManyField(Tag, blank=True, null=True, related_name='jobs')
-    applicant = models.ManyToManyField(settings.AUTH_USER_MODEL, null=True, blank=True, related_name="applicant")
+    tags = models.ManyToManyField(Tag, blank=True, related_name='jobs')
+    #applicant = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="applicant")
     #job_slug = models.SlugField(unique=True, editable=False)
 
     status = models.CharField(max_length=50, choices=STATUS, default=STATUS[0][0])
@@ -71,8 +72,8 @@ class Job(models.Model):
 
 class JobSearch(models.Model):
     job_search_title = models.CharField(max_length=50)
-    tags = models.ManyToManyField(Tag, blank=True, null=True, related_name='search_tags')
-    searcher = models.ManyToManyField(settings.AUTH_USER_MODEL, null=True, blank=True, related_name="searcher")
+    #tags = models.ManyToManyField(Tag, blank=True, related_name='search_tags')
+    searcher = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name="searcher")
 
     status = models.CharField(max_length=50, choices=STATUS, default=STATUS[0][0])
     created_date = models.DateTimeField(auto_now_add=True)
@@ -87,8 +88,8 @@ class JobSearch(models.Model):
 class JobApplication(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE, verbose_name="Job")
     applicant = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Applicant")
-    cover_letter = RichTextField()
-    resume = models.FileField(upload_to='resume/')
+    cover_letter = RichTextField(blank=True, null=True)
+    resume = models.FileField(upload_to='resume/', blank=True, null=True)
 
     status = models.CharField(max_length=50, choices=STATUS, default=STATUS[0][0])
     created_date = models.DateTimeField(auto_now_add=True)
@@ -99,4 +100,4 @@ class JobApplication(models.Model):
         ordering = ['-created_date']
 
     def __str__(self):
-        return self.job.job_title
+        return self.job.job_title + " - " + self.applicant.username

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Job, Tag
+from .models import Job, Tag, JobSearch, JobApplication
 
 
 @admin.register(Job)
@@ -29,3 +29,29 @@ class TagsAdmin(admin.ModelAdmin):
     class Meta:
         model = Tag
 
+@admin.register(JobSearch)
+class JobSearchsAdmin(admin.ModelAdmin):
+
+    list_display = [field.name for field in JobSearch._meta.fields]
+
+    list_display_links = ["job_search_title"]
+
+    search_fields = ["job_search_title"]
+
+    list_filter = ["created_date"]
+    class Meta:
+        model = JobSearch
+
+
+@admin.register(JobApplication)
+class JobApplicationsAdmin(admin.ModelAdmin):
+
+    list_display = [field.name for field in JobApplication._meta.fields]
+
+    list_display_links = ["job"]
+
+    search_fields = ["job"]
+
+    list_filter = ["created_date"]
+    class Meta:
+        model = JobApplication
