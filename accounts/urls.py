@@ -6,12 +6,14 @@ from django.contrib.auth import views as auth_views
 app_name = "accounts"
 
 urlpatterns = [
-    path('register/', register,name = "register"),
-    path('login/', loginUser,name = "login"),
+    # path('register/', register,name = "register"),
+    # path('login/', loginUser,name = "login"),
     path('forgot/', forgot, name="forgot"),
     path('reset/', reset, name="reset"),
     path('profile/', profile, name="profile"),
-    path("kullanici-girisi", registration_view, name = "authentication"),
+    path("register/", registration_view, name = "register"),
+    path("login/", login_view, name = "login"),
+    # path("kullanici-girisi", registration_view, name = "authentication"),
     path("logout/", logout_view, name = "logout"),
     path('sifre-degistir/', auth_views.PasswordChangeView.as_view(), name='password_change'),
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),

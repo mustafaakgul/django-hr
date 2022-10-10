@@ -94,22 +94,30 @@
                                 <form class="auth-register-form mt-2" method="POST">{% csrf_token %}
                                     <div class="mb-1">
                                         <label class="form-label" for="register-username">Username</label>
-                                        <input class="form-control" id="register-username" type="text" name="username" placeholder="johndoe" aria-describedby="register-username" autofocus="" tabindex="1" />
+{#                                        <input class="form-control" id="register-username" type="text" name="username" placeholder="johndoe" aria-describedby="register-username" autofocus="" tabindex="1" />#}
+                                        {{ formRegister.username }}
+                                        {{ formRegister.username.errors }}
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label" for="register-email">Email</label>
-                                        <input class="form-control" id="register-email" type="text" name="register-email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" />
+{#                                        <input class="form-control" id="register-email" type="text" name="register-email" placeholder="john@example.com" aria-describedby="register-email" tabindex="2" />#}
+                                        {{ formRegister.email }}
+                                        {{ formRegister.email.errors }}
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label" for="register-password">Password</label>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge" id="register-password" type="password" name="password" placeholder="············" aria-describedby="register-password" tabindex="3" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+{#                                            <input class="form-control form-control-merge" id="register-password" type="password" name="password" placeholder="············" aria-describedby="register-password" tabindex="3" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>#}
+                                            {{ formRegister.password1 }}
+                                            {{ formRegister.password1.errors }}
                                         </div>
                                     </div>
                                     <div class="mb-1">
                                         <label class="form-label" for="register-password">Password Confitm</label>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge" id="register-password" type="password" name="confirm" placeholder="············" aria-describedby="register-password" tabindex="3" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+{#                                            <input class="form-control form-control-merge" id="register-password" type="password" name="confirm" placeholder="············" aria-describedby="register-password" tabindex="3" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>#}
+                                            {{ formRegister.password2 }}
+                                            {{ formRegister.password2.errors }}
                                         </div>
                                     </div>
                                     <div class="mb-1">

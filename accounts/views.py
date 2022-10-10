@@ -1,23 +1,11 @@
-from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm, AccountForm
-from django.contrib import messages
-from django.contrib.auth.models import User
-from .models import Account
-from django.contrib.auth import login, authenticate, logout
-from django.shortcuts import get_object_or_404
-import logging
 from django.contrib.auth.decorators import login_required
 from .models import Account
 from django.contrib import messages, auth
 from django.contrib.auth import (
                                   authenticate,
-                                  logout ,
+                                  logout,
                                   login
-                              )
-from django.shortcuts import (
-                                  render,
-                                  get_object_or_404,
-                                  redirect
                               )
 from .forms import (
                     RegistrationForm,
@@ -26,8 +14,6 @@ from .forms import (
                 )
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from django.conf import settings
 
 
 def register(request):
@@ -117,7 +103,7 @@ def login_view(request):
             if user:
                 login(request, user)
                 messages.success(request, "Başarıyla giriş yaptınız.")
-                return redirect("current_state")
+                return redirect("dashboard")
             else:
                 messages.error("please Correct Below Errors")
 
@@ -131,7 +117,7 @@ def registration_view(request):
     user = request.user
 
     if user.is_authenticated:
-        return redirect("current_state")
+        return redirect("dashboard")
 
     if formRegister.is_valid():
         formRegister.save()
@@ -145,7 +131,7 @@ def registration_view(request):
         user_account.save()
 
         messages.success(request, "Kaydı başarıyla tamamladınız. {}".format(request.user.username))
-        return redirect('current_state')
+        return redirect('dashboard')
     else:
         messages.error(request, "Please Correct Below Errors")
 
