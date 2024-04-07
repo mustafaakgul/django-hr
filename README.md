@@ -1,5 +1,1 @@
-- Seperate .env.development and .env.production
-- Template: https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/index.html
-- Add Redis for listing Jobs
-- Add RabbitMQ for sending emails, notifications, sms
-- Add RabbitMQ for adding tags to accounts
+### Django project for managing human resource records and processes
